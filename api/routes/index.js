@@ -6,5 +6,9 @@ router
 	.route('/hotels')
 	.get(hotelsController.getAllHotels)
 
+router
+	.route('/hotels/:hotelId')
+	.get(hotelsController.getOneHotel)
+
 
 module.exports = router
