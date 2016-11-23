@@ -1,3 +1,5 @@
+// Absolutely no longer needed, but interesting to keep to see how it is done.
+
 var mongoClient = require('mongodb').MongoClient
 var dbURL = 'mongodb://localhost:27017/meanHotelsUdemy'
 

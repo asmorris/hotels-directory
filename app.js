@@ -1,11 +1,11 @@
-var db = require('./api/data/dbconnection.js')
+var db = require('./api/data/db.js')
 var path = require('path')
 var express = require('express')
 var app = express()
 var routes = require('./api/routes')
 var bodyParser = require('body-parser')
 
-db.open()
+db
 app.set('port', 3000)
 
 app.use((req, res, next) => {
