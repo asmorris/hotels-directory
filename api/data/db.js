@@ -35,3 +35,6 @@ process.once('SIGUSR2', () => {
 		process.kill(process.pid, 'SIGUSR2')
 	})
 })
+
+// BRING IN SCHEMAS AND MODELS
+require('../data/hotel-model.js')
