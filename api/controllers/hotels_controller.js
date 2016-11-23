@@ -50,9 +50,30 @@ module.exports.getOneHotel = (req, res) => {
 
 module.exports.addOneHotel = (req, res) => {
 	var db = dbConnection.get()
+	var collection = db.collection('hotels')
+	var newHotel
+
 	console.log('POST new hotel')
-	console.log(req.body)
-	res
-		.status(200)
-		.json(req.body)
+
+	if (req.body && req.body.name && req.body.stars) {
+		newHotel = req.body
+		newHotel.stars = parseInt(req.body.stars, 10)
+		collection.insertOne(newHotel, (err, response) => {
+			if (err) {
+				console.log(err)
+				return
+			}
+			console.log(response.ops)
+			res
+				.status(201)
+				.json(response.ops)
+		})
+	} else {
+		console.log('Data missing from body')
+		res
+			.status(400)
+			.json({ message: 'Required data was missing from body'})
+	}
+
+
 }
