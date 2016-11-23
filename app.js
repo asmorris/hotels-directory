@@ -1,8 +1,11 @@
+var db = require('./api/data/dbconnection.js')
 var path = require('path')
 var express = require('express')
 var app = express()
 var routes = require('./api/routes')
+var bodyParser = require('body-parser')
 
+db.open()
 app.set('port', 3000)
 
 app.use((req, res, next) => {
@@ -11,7 +14,10 @@ app.use((req, res, next) => {
 })
 
 app.use(express.static(path.join(__dirname, 'public')))
+
 app.use('/jquery', express.static(__dirname + 'node_modules/jquery/dist'))
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use('/api', routes)
 
 
